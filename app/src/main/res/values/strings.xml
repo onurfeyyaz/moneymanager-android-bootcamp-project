@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Money Manager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image">image</string>
+    <string name="first_onboard_screen_subtext">Düzenlemene yardımcı olacak!</string>
+    <string name="first_onboard_screen_text">Harcama Takip Uygulaması</string>
+    <string name="gec">Geç</string>
+    <string name="second_onboard_screen_text">Kolayca Kategorilendir</string>
+    <string name="second_onboard_screen_subtext">Daha kolay takip et!</string>
+    <string name="third_onboard_screen_text">Farklı Para Birimleri</string>
+    <string name="third_onboard_screen_subtext">Harcamalarını sürekli güncel kur ile takip et!</string>
+    <string name="bitir">Bitir</string>
+</resources>
