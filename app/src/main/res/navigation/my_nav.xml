@@ -36,5 +36,23 @@
         android:id="@+id/homeFragment"
         android:name="com.feyyazonur.moneymanager.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_isimFragment"
+            app:destination="@id/isimFragment" />
+        <argument
+            android:name="isim"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="İsim için Tıkla" />
+    </fragment>
+    <fragment
+        android:id="@+id/isimFragment"
+        android:name="com.feyyazonur.moneymanager.IsimFragment"
+        android:label="fragment_isim"
+        tools:layout="@layout/fragment_isim" >
+        <action
+            android:id="@+id/action_isimFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
