@@ -35,6 +35,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_isimFragment)
         }
 
+
+        val adapter = HarcamalarAdapter()
+        binding.harcamaList.adapter = adapter
+
         return binding.root
     }
 
