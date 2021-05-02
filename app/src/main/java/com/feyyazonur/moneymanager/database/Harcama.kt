@@ -12,12 +12,12 @@ data class Harcama(
     @ColumnInfo(name = "harcama_ismi")
     var harcamaIsmi: String,
 
-    @ColumnInfo(name = "harcama_aciklamasi")
-    var harcamaAciklamasi: String,
+    @ColumnInfo(name = "harcanan_para")
+    var harcananPara: Float,
 
     @ColumnInfo(name = "harcama_tipi")
-    var harcamaTipi: String,
+    var harcamaTipi: Int,
 
     @ColumnInfo(name = "para_birimi")
-    var paraBirimi: String
+    var paraBirimi: Int
 )

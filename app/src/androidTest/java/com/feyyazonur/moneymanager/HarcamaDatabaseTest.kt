@@ -39,7 +39,7 @@ class HarcamaDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetParaBirimi() {
+    suspend fun insertAndGetParaBirimi() {
         val paraBirimi = Harcama(1,"ayakkabı", "trendyoldan aldım", "ihtiyaç", "TL")
         harcamaDao.insert(paraBirimi)
         val lastHarcama = harcamaDao.getLastHarcama()

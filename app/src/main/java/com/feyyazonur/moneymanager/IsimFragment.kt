@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.feyyazonur.moneymanager.databinding.FragmentIsimBinding
 
+
 class IsimFragment : Fragment() {
+
     private var _binding: FragmentIsimBinding? = null
 
     private val binding get() = _binding!!

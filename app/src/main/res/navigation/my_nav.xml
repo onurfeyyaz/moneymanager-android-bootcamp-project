@@ -45,7 +45,11 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="İsim için Tıkla" />
+        <action
+            android:id="@+id/action_homeFragment_to_harcamaEkleFragment"
+            app:destination="@id/harcamaEkleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/isimFragment"
         android:name="com.feyyazonur.moneymanager.IsimFragment"
@@ -53,6 +57,17 @@
         tools:layout="@layout/fragment_isim" >
         <action
             android:id="@+id/action_isimFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/isimFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/harcamaEkleFragment"
+        android:name="com.feyyazonur.moneymanager.HarcamaEkleFragment"
+        android:label="fragment_harcama_ekle"
+        tools:layout="@layout/fragment_harcama_ekle" >
+        <action
+            android:id="@+id/action_harcamaEkleFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

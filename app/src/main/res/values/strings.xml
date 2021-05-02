@@ -24,4 +24,10 @@
     <string name="dolar">Dolar</string>
     <string name="euro">Euro</string>
     <string name="sterlin">Sterlin</string>
+    <string name="harcama_ekle">Harcama Ekle</string>
+    <string name="aciklama">Açıklama</string>
+    <string name="harcama">Harcama</string>
+    <string name="fatura">Fatura</string>
+    <string name="kira">Kira</string>
+    <string name="diger">Diğer</string>
 </resources>
