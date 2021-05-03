@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.manager
+package com.feyyazonur.moneymanager.viewmodel
 /*
 import android.app.Application
 import androidx.lifecycle.ViewModel

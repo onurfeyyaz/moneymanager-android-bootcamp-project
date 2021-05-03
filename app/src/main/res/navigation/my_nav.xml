@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.feyyazonur.moneymanager.SplashFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -34,25 +34,23 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.feyyazonur.moneymanager.HomeFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_isimFragment"
             app:destination="@id/isimFragment" />
-        <argument
-            android:name="isim"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="İsim için Tıkla" />
         <action
             android:id="@+id/action_homeFragment_to_harcamaEkleFragment"
             app:destination="@id/harcamaEkleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_harcamaDetayFragment"
+            app:destination="@id/harcamaDetayFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/isimFragment"
-        android:name="com.feyyazonur.moneymanager.IsimFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.IsimFragment"
         android:label="fragment_isim"
         tools:layout="@layout/fragment_isim" >
         <action
@@ -60,14 +58,29 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/isimFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="currentIsim"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/harcamaEkleFragment"
-        android:name="com.feyyazonur.moneymanager.HarcamaEkleFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.HarcamaEkleFragment"
         android:label="fragment_harcama_ekle"
         tools:layout="@layout/fragment_harcama_ekle" >
         <action
             android:id="@+id/action_harcamaEkleFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/harcamaDetayFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.HarcamaDetayFragment"
+        android:label="fragment_harcama_detay"
+        tools:layout="@layout/fragment_harcama_detay" >
+        <action
+            android:id="@+id/action_harcamaDetayFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="currentHarcama"
+            app:argType="com.feyyazonur.moneymanager.model.Harcama" />
     </fragment>
 </navigation>

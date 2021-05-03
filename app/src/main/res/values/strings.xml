@@ -30,4 +30,5 @@
     <string name="fatura">Fatura</string>
     <string name="kira">Kira</string>
     <string name="diger">Diğer</string>
+    <string name="sil">Sil</string>
 </resources>

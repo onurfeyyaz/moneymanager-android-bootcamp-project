@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager
+package com.feyyazonur.moneymanager.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.feyyazonur.moneymanager.R
 
 class SplashFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager
+package com.feyyazonur.moneymanager.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
-import com.feyyazonur.moneymanager.database.Harcama
+import com.feyyazonur.moneymanager.R
+import com.feyyazonur.moneymanager.model.Harcama
 import com.feyyazonur.moneymanager.databinding.FragmentHarcamaEkleBinding
-import com.feyyazonur.moneymanager.databinding.FragmentIsimBinding
-import com.feyyazonur.moneymanager.manager.HarcamaViewModel
+import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
 
 class HarcamaEkleFragment : Fragment() {
     private var _binding: FragmentHarcamaEkleBinding? = null
@@ -36,6 +34,7 @@ class HarcamaEkleFragment : Fragment() {
         mHarcamaViewModel = ViewModelProvider(this).get(HarcamaViewModel::class.java)
 
         binding.harcamaEkleButton.setOnClickListener {
+
             insertDataToDatabase()
         }
 
@@ -71,16 +70,16 @@ class HarcamaEkleFragment : Fragment() {
 
 
     private fun inputCheck(
-        harcamaIsmi: String,
-        harcananPara: String,
-        harcamaTipi: String,
-        paraBirimi: String
+        harcamaIsmi: String?,
+        harcananPara: String?,
+        harcamaTipi: String?,
+        paraBirimi: String?
     ): Boolean {
         return !(
-                TextUtils.isEmpty(harcamaIsmi)
-                        && TextUtils.isEmpty(harcananPara)
-                        && TextUtils.isEmpty(harcamaTipi)
-                        && TextUtils.isEmpty(paraBirimi)
+                harcamaIsmi.isNullOrBlank()
+                        && harcananPara.isNullOrBlank()
+                        && harcamaTipi.isNullOrBlank()
+                        && paraBirimi.isNullOrBlank()
                 )
     }
 

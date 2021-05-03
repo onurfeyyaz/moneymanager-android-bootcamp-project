@@ -7,13 +7,13 @@
 
         <variable
             name="harcamaViewModel"
-            type="com.feyyazonur.moneymanager.manager.HarcamaViewModel" />
+            type="com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HarcamaEkleFragment">
+        tools:context=".fragments.HarcamaEkleFragment">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/harcama_ekle_tv_id"
@@ -39,6 +39,8 @@
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
             app:boxCornerRadiusTopStart="20dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/harcama_ekle_tv_id">
 
@@ -68,6 +70,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/urun_parasi_text_input_edit_text"
                 android:layout_width="match_parent"
+                android:inputType="numberDecimal"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>

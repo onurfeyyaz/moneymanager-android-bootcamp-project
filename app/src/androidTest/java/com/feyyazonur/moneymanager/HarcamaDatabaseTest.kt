@@ -3,7 +3,7 @@ package com.feyyazonur.moneymanager
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.feyyazonur.moneymanager.database.Harcama
+import com.feyyazonur.moneymanager.model.Harcama
 import com.feyyazonur.moneymanager.database.HarcamaDatabase
 import com.feyyazonur.moneymanager.database.HarcamaDatabaseDao
 import org.junit.After

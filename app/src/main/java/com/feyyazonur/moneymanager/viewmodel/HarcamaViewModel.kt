@@ -1,13 +1,12 @@
-package com.feyyazonur.moneymanager.manager
+package com.feyyazonur.moneymanager.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.feyyazonur.moneymanager.database.Harcama
+import com.feyyazonur.moneymanager.model.Harcama
 import com.feyyazonur.moneymanager.database.HarcamaDatabase
-import com.feyyazonur.moneymanager.database.HarcamaDatabaseDao
-import com.feyyazonur.moneymanager.database.HarcamaRepository
+import com.feyyazonur.moneymanager.repository.HarcamaRepository
 import kotlinx.coroutines.launch
 
 class HarcamaViewModel(
@@ -41,6 +40,13 @@ class HarcamaViewModel(
             repository.addHarcama(harcama)
         }
     }
+
+    fun deleteHarcama(harcama: Harcama){
+        viewModelScope.launch {
+            repository.deleteHarcama(harcama)
+        }
+    }
+
     /*
     private suspend fun insert(harcama: Harcama){
         database.insert(harcama)

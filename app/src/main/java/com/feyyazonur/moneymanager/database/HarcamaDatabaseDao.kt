@@ -2,6 +2,7 @@ package com.feyyazonur.moneymanager.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.feyyazonur.moneymanager.model.Harcama
 
 @Dao
 interface HarcamaDatabaseDao {
@@ -11,6 +12,9 @@ interface HarcamaDatabaseDao {
 
     @Update
     suspend fun update(harcama: Harcama)
+
+    @Delete
+    suspend fun deleteHarcama(harcama: Harcama)
 
     @Query("SELECT * from harcama_listesi_table Where harcamaId = :key")
     suspend fun get(key: Long): Harcama?

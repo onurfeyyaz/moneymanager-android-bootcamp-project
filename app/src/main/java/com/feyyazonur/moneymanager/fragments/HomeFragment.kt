@@ -1,5 +1,6 @@
-package com.feyyazonur.moneymanager
+package com.feyyazonur.moneymanager.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.feyyazonur.moneymanager.database.HarcamaDatabase
+import com.feyyazonur.moneymanager.HarcamalarAdapter
+import com.feyyazonur.moneymanager.R
 import com.feyyazonur.moneymanager.databinding.FragmentHomeBinding
-import com.feyyazonur.moneymanager.manager.HarcamaViewModel
+import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var mHarcamaViewModel: HarcamaViewModel
+
+    private var savedIsim: String? = "isim giriniz"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,23 +45,30 @@ class HomeFragment : Fragment() {
 
         binding.harcamaListRecyclerView.adapter = adapter
 
+        if (ismiGetir()) {
+            binding.whoIsButton.text = savedIsim
+        }
 
-
+        binding.whoIsButton.setOnClickListener {
+            //findNavController().navigate(R.id.action_homeFragment_to_isimFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToİsimFragment(binding.whoIsButton.text.toString())
+            findNavController().navigate(action)
+        }
 
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_harcamaEkleFragment)
         }
 
-        //TODO
-        //önce isim fragment'deki input'u sharedpref'e ekle
-        //sonra whoisbutton'a sharedpref'ten aldığın ismi yazdır
-
-        binding.whoIsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_isimFragment)
-        }
-
-
         return binding.root
+    }
+
+    private fun ismiGetir(): Boolean {
+        // SharedPreferences
+        val sharedPref = activity?.getSharedPreferences(
+            "sharedPref", Context.MODE_PRIVATE
+        )
+        savedIsim = sharedPref?.getString("isim", "isim giriniz")
+        return !savedIsim.isNullOrEmpty()
     }
 
 }
