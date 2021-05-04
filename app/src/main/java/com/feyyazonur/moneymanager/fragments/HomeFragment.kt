@@ -53,11 +53,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.whoIsButton.setOnClickListener {
-            //findNavController().navigate(R.id.action_homeFragment_to_isimFragment)
             val action = HomeFragmentDirections.actionHomeFragmentToİsimFragment(binding.whoIsButton.text.toString())
             findNavController().navigate(action)
         }
-
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_harcamaEkleFragment)
         }

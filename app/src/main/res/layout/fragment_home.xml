@@ -38,7 +38,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/merhaba_textview"
-                        style="@style/TextAppearance.AppCompat.Title"
+                        style="?attr/textAppearanceHeadline6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -50,10 +50,9 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/who_is_button"
-                        style="@style/TextAppearance.AppCompat.Headline"
+                        style="?attr/textAppearanceHeadline5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
                         android:layout_marginTop="4dp"
                         android:text="@string/isminizi_giriniz"
                         android:textColor="@color/white"
@@ -62,9 +61,12 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/toplam_harcanan_tv"
+                        style="?attr/textAppearanceHeadline6"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_height="match_parent"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:text="@string/sample_tutar"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.feyyazonur.moneymanager.fragments.HomeFragmentDirections
 import com.feyyazonur.moneymanager.model.Harcama
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
 
 class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
