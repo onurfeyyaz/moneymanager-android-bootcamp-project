@@ -16,6 +16,9 @@ interface HarcamaDatabaseDao {
     @Delete
     suspend fun deleteHarcama(harcama: Harcama)
 
+    @Query("SELECT SUM(harcanan_para) FROM harcama_listesi_table")
+    fun toplamHarcananPara(): LiveData<Float>
+
     @Query("SELECT * from harcama_listesi_table Where harcamaId = :key")
     suspend fun get(key: Long): Harcama?
 

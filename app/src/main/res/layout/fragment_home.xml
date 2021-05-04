@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="12dp"
-                app:cardBackgroundColor="@color/purple_500"
+                app:cardBackgroundColor="@color/ic_launcher_background"
                 app:cardCornerRadius="22dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -61,11 +61,10 @@
                         app:layout_constraintTop_toBottomOf="@id/merhaba_textview" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/harcama_textview"
+                        android:id="@+id/toplam_harcanan_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
-                        android:text="@string/harcamaniz"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -129,17 +128,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:padding="12dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tl_button">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/harcama_list_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="@id/nested_scroll_view"
-                    app:layout_constraintStart_toStartOf="@id/nested_scroll_view"
-                    app:layout_constraintTop_toTopOf="@id/tl_button" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

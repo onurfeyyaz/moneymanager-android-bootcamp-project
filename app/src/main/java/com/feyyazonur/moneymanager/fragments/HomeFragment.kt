@@ -42,6 +42,9 @@ class HomeFragment : Fragment() {
         mHarcamaViewModel.getAllHarcama.observe(viewLifecycleOwner, Observer { harcama ->
             adapter.setData(harcama)
         })
+        mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, {para ->
+            binding.toplamHarcananTv.text = para.toInt().toString()
+        })
 
         binding.harcamaListRecyclerView.adapter = adapter
 

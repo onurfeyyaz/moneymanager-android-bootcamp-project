@@ -14,6 +14,7 @@ class HarcamaViewModel(
 ) : AndroidViewModel(application) {
 
     val getAllHarcama: LiveData<List<Harcama>>
+    val toplamHarcananPara: LiveData<Float>
     private val repository: HarcamaRepository
 
     //private var sonHarcama = MutableLiveData<Harcama?>()
@@ -24,6 +25,7 @@ class HarcamaViewModel(
         val harcamaDao = HarcamaDatabase.getInstance(application).harcamaDatabaseDao()
         repository = HarcamaRepository(harcamaDao)
         getAllHarcama = repository.getAllHarcama
+        toplamHarcananPara = repository.toplamHarnanPara
     }
     /*private fun initializeSonHarcama() {
         viewModelScope.launch {
@@ -46,9 +48,4 @@ class HarcamaViewModel(
             repository.deleteHarcama(harcama)
         }
     }
-
-    /*
-    private suspend fun insert(harcama: Harcama){
-        database.insert(harcama)
-    }*/
 }

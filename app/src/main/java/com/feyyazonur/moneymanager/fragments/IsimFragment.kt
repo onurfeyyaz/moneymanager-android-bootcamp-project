@@ -30,12 +30,14 @@ class IsimFragment : Fragment() {
 
         if (isim.contains("Hanım")){
             binding.radioGroup.check(binding.radioButton2.id)
-            isim = isim.replace("Hanım", "")
+            // trim ekledim çünkü her kaydet'e bastığımda isim'in sonuna boşluk ekliyordu
+            // birden fazla kez, art arda kaydet butonuna basınca "feyyaz    bey" gibi bir string çıkıyordu.
+            isim = isim.replace("Hanım", "").trim()
         }
 
         else if (args.currentIsim.contains("Bey")){
             binding.radioGroup.check(binding.radioButton1.id)
-            isim = isim.replace("Bey", "")
+            isim = isim.replace("Bey", "").trim()
         }
         else
             binding.radioGroup.check(binding.radioButton3.id)
