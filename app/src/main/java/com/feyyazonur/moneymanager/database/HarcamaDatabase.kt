@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.feyyazonur.moneymanager.model.Harcama
 
-@Database(entities = [Harcama::class], version = 2, exportSchema = false)
+@Database(entities = [Harcama::class], version = 3, exportSchema = false)
 abstract class HarcamaDatabase: RoomDatabase() {
 
     abstract fun harcamaDatabaseDao(): HarcamaDatabaseDao

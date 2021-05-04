@@ -10,15 +10,16 @@
             type="com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".fragments.HomeFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/root_constraintlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/material_card_view_id"
@@ -38,24 +39,28 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/merhaba_textview"
-                        style="?attr/textAppearanceHeadline6"
+                        style="?attr/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
                         android:text="@string/merhaba"
                         android:textColor="@color/white"
+                        app:layout_constraintVertical_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/who_is_button"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/who_is_button"
-                        style="?attr/textAppearanceHeadline5"
+                        style="?attr/textAppearanceBody2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textSize="22sp"
                         android:text="@string/isminizi_giriniz"
                         android:textColor="@color/white"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@id/merhaba_textview"
                         app:layout_constraintTop_toBottomOf="@id/merhaba_textview" />
 
@@ -64,9 +69,10 @@
                         style="?attr/textAppearanceHeadline6"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:padding="16dp"
                         android:gravity="center"
+                        android:padding="16dp"
                         android:text="@string/sample_tutar"
+                        android:tooltipText="Harcamanız: 1234 ₺"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -123,34 +129,51 @@
                 app:layout_constraintEnd_toEndOf="@id/material_card_view_id"
                 app:layout_constraintStart_toEndOf="@id/euro_button"
                 app:layout_constraintTop_toBottomOf="@id/material_card_view_id" />
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nested_scroll_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:padding="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tl_button">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/harcama_list_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            </androidx.core.widget.NestedScrollView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_action_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/ekle"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="true">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/harcama_list_recycler_view"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/ekle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

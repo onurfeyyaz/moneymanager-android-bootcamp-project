@@ -15,7 +15,6 @@ import com.feyyazonur.moneymanager.HarcamalarAdapter
 import com.feyyazonur.moneymanager.R
 import com.feyyazonur.moneymanager.databinding.FragmentHomeBinding
 import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -35,6 +34,7 @@ class HomeFragment : Fragment() {
         val adapter = HarcamalarAdapter()
         val recyclerView = binding.harcamaListRecyclerView
         recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // HarcamaViewModel
@@ -43,13 +43,30 @@ class HomeFragment : Fragment() {
             adapter.setData(harcama)
         })
         mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, {para ->
-            binding.toplamHarcananTv.text = para.toInt().toString()
+            binding.toplamHarcananTv.text = "Harcamanız\n${para?.toInt()?.toString()}"
         })
 
-        binding.harcamaListRecyclerView.adapter = adapter
+        //binding.harcamaListRecyclerView.adapter = adapter
 
         if (ismiGetir()) {
             binding.whoIsButton.text = savedIsim
+        }
+
+        // TL
+        binding.tlButton.setOnClickListener{
+            adapter.changeParaBirimi("TL")
+        }
+        // Dolar
+        binding.dolarButton.setOnClickListener{
+            adapter.changeParaBirimi("Dolar")
+        }
+        //Euro
+        binding.euroButton.setOnClickListener {
+            adapter.changeParaBirimi("Euro")
+        }
+        //Sterlin
+        binding.sterlinButton.setOnClickListener {
+            adapter.changeParaBirimi("Sterlin")
         }
 
         binding.whoIsButton.setOnClickListener {

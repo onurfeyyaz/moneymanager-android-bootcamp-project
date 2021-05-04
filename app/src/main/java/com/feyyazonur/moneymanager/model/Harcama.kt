@@ -19,8 +19,8 @@ data class Harcama(
     var harcananPara: Float,
 
     @ColumnInfo(name = "harcama_tipi")
-    var harcamaTipi: Int,
+    var harcamaTipi: String,
 
     @ColumnInfo(name = "para_birimi")
-    var paraBirimi: Int
+    var paraBirimi: String
 ): Parcelable

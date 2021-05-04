@@ -13,7 +13,6 @@
     <string name="bitir">Bitir</string>
     <string name="ekle">Ekle</string>
     <string name="merhaba">Merhaba</string>
-    <string name="harcamaniz">Harcamanız: %s</string>
     <string name="erkek">Erkek</string>
     <string name="kadin">Kadın</string>
     <string name="belirtmek_istemiyorum">Belirtmek İstemiyorum</string>
@@ -31,5 +30,8 @@
     <string name="kira">Kira</string>
     <string name="diger">Diğer</string>
     <string name="sil">Sil</string>
-    <string name="sample_tutar">12345 TL</string>
+    <string name="sample_tutar">Harcamanız: %s</string>
+    <string name="harcama_tutar_tipli">%s</string>
+    <string name="detay_para_birimi">%s %s</string>
+
 </resources>

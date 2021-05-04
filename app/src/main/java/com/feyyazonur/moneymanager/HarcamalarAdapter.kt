@@ -4,14 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.feyyazonur.moneymanager.fragments.HarcamaEkleFragment
 import com.feyyazonur.moneymanager.fragments.HomeFragmentDirections
 import com.feyyazonur.moneymanager.model.Harcama
-import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
+import java.text.NumberFormat
 
 class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
 
     private var harcamaList = emptyList<Harcama>()
+    private var paraBirimi: String = "TL"
+    private lateinit var harcamaTipi: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HarcamalarViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -22,15 +25,18 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
     override fun onBindViewHolder(holder: HarcamalarViewHolder, position: Int) {
         val currentItem = harcamaList[position]
 
+        harcamaTipi = currentItem.harcamaTipi
         holder.itemView.harcama_ismi_text_view.text =
-            currentItem.harcamaIsmi.toString()
+            currentItem.harcamaIsmi
+
+
         // TODO ICON ayarını burada yap
-        when (currentItem.harcamaTipi) {
-            2131231067 -> {
+        when (harcamaTipi) {
+            "Fatura" -> {
                 holder.itemView.icon_of_harcama
                     .setImageResource(R.drawable.ic_outline_receipt_long_24)
             }
-            2131231068 -> {
+            "Kira" -> {
                 holder.itemView.icon_of_harcama
                     .setImageResource(R.drawable.ic_outline_home_24)
             }
@@ -39,8 +45,21 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
                     .setImageResource(R.drawable.ic_outline_shopping_bag_24)
             }
         }
-        holder.itemView.tutar_text_view.text =
-            currentItem.harcananPara.toInt().toString()
+        when (paraBirimi) {
+            "Dolar" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "dolar")
+            }
+            "Euro" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "euro")
+            }
+            "Sterlin" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "sterlin")
+            }
+            else -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "tl")
+            }
+        }
+
 
         holder.itemView.harcamalar_item_card_view.setOnClickListener {
             val action =
@@ -52,6 +71,11 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
 
     fun setData(harcama: List<Harcama>) {
         this.harcamaList = harcama
+        notifyDataSetChanged()
+    }
+
+    fun changeParaBirimi(paraBirimi: String) {
+        this.paraBirimi = paraBirimi
         notifyDataSetChanged()
     }
 
