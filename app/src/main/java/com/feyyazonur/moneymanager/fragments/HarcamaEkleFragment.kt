@@ -52,7 +52,6 @@ class HarcamaEkleFragment : Fragment() {
             R.id.radio_button_2 -> harcamaTipi = binding.radioButton2.text.toString()
             R.id.radio_button_3 -> harcamaTipi = binding.radioButton3.text.toString()
         }
-        Log.d("HARCAMA_TIPI", harcamaTipi.toString())
 
         when (paraBirimiRadioGroup) {
             R.id.radio_button_tl -> paraBirimi = binding.radioButtonTl.text.toString()
@@ -60,7 +59,6 @@ class HarcamaEkleFragment : Fragment() {
             R.id.radio_button_eur -> paraBirimi = binding.radioButtonEur.text.toString()
             R.id.radio_button_gbp -> paraBirimi = binding.radioButtonGbp.text.toString()
         }
-        Log.d("PARA_BIRIMI", paraBirimi.toString())
 
         val harcamaIsmi = binding.harcamaDetayTextInputEditText.text.toString()
         val harcananPara = binding.urunParasiTextInputEditText.text.toString().toFloat()

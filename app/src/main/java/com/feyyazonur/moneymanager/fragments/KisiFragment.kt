@@ -9,22 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.feyyazonur.moneymanager.R
-import com.feyyazonur.moneymanager.databinding.FragmentIsimBinding
+import com.feyyazonur.moneymanager.databinding.FragmentKisiBinding
 
 
-class IsimFragment : Fragment() {
+class KisiFragment : Fragment() {
 
-    private var _binding: FragmentIsimBinding? = null
+    private var _binding: FragmentKisiBinding? = null
 
     private val binding get() = _binding!!
-    private val args by navArgs<IsimFragmentArgs>()
+    private val args by navArgs<KisiFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentIsimBinding.inflate(inflater, container, false)
+        _binding = FragmentKisiBinding.inflate(inflater, container, false)
 
         var isim = args.currentIsim
 
@@ -47,7 +47,7 @@ class IsimFragment : Fragment() {
 
         binding.isimDegistirKaydetBtn.setOnClickListener {
             ismiKaydet()
-            val action = IsimFragmentDirections.actionİsimFragmentToHomeFragment()
+            val action = KisiFragmentDirections.actionKisiFragmentToHomeFragment()
             findNavController().navigate(
                 action
             )

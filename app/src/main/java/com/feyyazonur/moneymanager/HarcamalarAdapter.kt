@@ -1,20 +1,31 @@
 package com.feyyazonur.moneymanager
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.feyyazonur.moneymanager.fragments.HarcamaEkleFragment
 import com.feyyazonur.moneymanager.fragments.HomeFragmentDirections
 import com.feyyazonur.moneymanager.model.Harcama
 import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
-import java.text.NumberFormat
+import java.util.*
+import kotlin.math.roundToInt
 
 class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
 
     private var harcamaList = emptyList<Harcama>()
+
     private var paraBirimi: String = "TL"
     private lateinit var harcamaTipi: String
+
+    private var tutar: Int = 0
+
+    enum class PARA(val deger: Double) {
+        TL(1.0),
+        DOLAR(8.0),
+        EURO(10.0),
+        STERLIN(11.0)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HarcamalarViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -26,8 +37,87 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
         val currentItem = harcamaList[position]
 
         harcamaTipi = currentItem.harcamaTipi
+        tutar = currentItem.harcananPara.toInt()
+
         holder.itemView.harcama_ismi_text_view.text =
             currentItem.harcamaIsmi
+
+
+        //if (paraBirimi == currentItem.paraBirimi) {
+        val cevrilenTutar =
+            paraDegeriniCevir(tutar, PARA.valueOf(paraBirimi.toUpperCase(Locale.ROOT)).deger)
+        Log.d("---CEVRİLEN_TUTAR---", cevrilenTutar.toString())
+        when (paraBirimi) {
+            "Dolar" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                    R.string.detay_para_birimi,
+                    cevrilenTutar.toString(),
+                    "$"
+                )
+                currentItem.paraBirimi = paraBirimi
+            }
+            "Euro" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                    R.string.detay_para_birimi,
+                    cevrilenTutar.toString(),
+                    "€"
+                )
+                currentItem.paraBirimi = paraBirimi
+            }
+            "Sterlin" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                    R.string.detay_para_birimi,
+                    cevrilenTutar.toString(),
+                    "£"
+                )
+                currentItem.paraBirimi = paraBirimi
+            }
+            "TL" -> {
+                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                    R.string.detay_para_birimi,
+                    cevrilenTutar.toString(),
+                    "₺"
+                )
+                currentItem.paraBirimi = paraBirimi
+            }
+        }
+        //}
+        /*else{
+            when (paraBirimi) {
+                "Dolar" -> {
+                    holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                        R.string.detay_para_birimi,
+                        tutar.toString(),
+                        "$"
+                    )
+                    currentItem.paraBirimi = paraBirimi
+                }
+                "Euro" -> {
+                    holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                        R.string.detay_para_birimi,
+                        tutar.toString(),
+                        "€"
+                    )
+                    currentItem.paraBirimi = paraBirimi
+                }
+                "Sterlin" -> {
+                    holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                        R.string.detay_para_birimi,
+                        tutar.toString(),
+                        "£"
+                    )
+                    currentItem.paraBirimi = paraBirimi
+                }
+                "TL" -> {
+                    holder.itemView.tutar_text_view.text = holder.itemView.context.getString(
+                        R.string.detay_para_birimi,
+                        tutar.toString(),
+                        "₺"
+                    )
+                    currentItem.paraBirimi = paraBirimi
+                }
+            }
+        }*/
 
 
         // TODO ICON ayarını burada yap
@@ -45,21 +135,6 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
                     .setImageResource(R.drawable.ic_outline_shopping_bag_24)
             }
         }
-        when (paraBirimi) {
-            "Dolar" -> {
-                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "dolar")
-            }
-            "Euro" -> {
-                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "euro")
-            }
-            "Sterlin" -> {
-                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "sterlin")
-            }
-            else -> {
-                holder.itemView.tutar_text_view.text = holder.itemView.context.getString(R.string.harcama_tutar_tipli, "tl")
-            }
-        }
-
 
         holder.itemView.harcamalar_item_card_view.setOnClickListener {
             val action =
@@ -77,6 +152,10 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
     fun changeParaBirimi(paraBirimi: String) {
         this.paraBirimi = paraBirimi
         notifyDataSetChanged()
+    }
+
+    fun paraDegeriniCevir(tutar: Int, birim: Double): Int {
+        return (tutar.toDouble() * birim).roundToInt()
     }
 
     override fun getItemCount() = harcamaList.size

@@ -3,11 +3,15 @@ package com.feyyazonur.moneymanager.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.feyyazonur.moneymanager.model.Harcama
 import com.feyyazonur.moneymanager.database.HarcamaDatabase
+import com.feyyazonur.moneymanager.model.Harcama
+import com.feyyazonur.moneymanager.network.Api
 import com.feyyazonur.moneymanager.repository.HarcamaRepository
 import kotlinx.coroutines.launch
+
+enum class ApiStatus { LOADING, ERROR, DONE }
 
 class HarcamaViewModel(
     application: Application
@@ -17,25 +21,19 @@ class HarcamaViewModel(
     val toplamHarcananPara: LiveData<Float>
     private val repository: HarcamaRepository
 
-    //private var sonHarcama = MutableLiveData<Harcama?>()
-    //val tumHarcamalar = database.getAllHarcama()
+    //private val _paraStatus = MutableLiveData<String>()
+    //val paraStatus: LiveData<String> = _paraStatus
+
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String> = _status
 
     init {
-        //initializeSonHarcama()
         val harcamaDao = HarcamaDatabase.getInstance(application).harcamaDatabaseDao()
         repository = HarcamaRepository(harcamaDao)
         getAllHarcama = repository.getAllHarcama
         toplamHarcananPara = repository.toplamHarnanPara
+        getPhotos()
     }
-    /*private fun initializeSonHarcama() {
-        viewModelScope.launch {
-            sonHarcama.value = getSonHarcamaFromDatabase()
-        }
-    }
-    private suspend fun getSonHarcamaFromDatabase(): Harcama?{
-        var harcama = database.getLastHarcama()
-        return harcama
-    }*/
 
     fun harcamaEkle(harcama: Harcama) {
         viewModelScope.launch {
@@ -43,9 +41,26 @@ class HarcamaViewModel(
         }
     }
 
-    fun deleteHarcama(harcama: Harcama){
+    fun deleteHarcama(harcama: Harcama) {
         viewModelScope.launch {
             repository.deleteHarcama(harcama)
+        }
+    }
+
+    /*fun getParaStatus(paraBirimi: String): String {
+        _paraStatus.value = paraBirimi//ParaBirimiStatus.valueOf(paraBirimi)
+        Log.d("---GET PARA STATUS---", _paraStatus.value.toString())
+        return _paraStatus.value.toString()
+    }*/
+
+    private fun getPhotos() {
+        viewModelScope.launch {
+            try {
+                val listResult = Api.retrofitService.getPhotos()
+                _status.value = "Success: ${listResult.size}"
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
+            }
         }
     }
 }

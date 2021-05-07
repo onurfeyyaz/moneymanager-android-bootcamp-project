@@ -2,6 +2,7 @@ package com.feyyazonur.moneymanager.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +16,11 @@ import com.feyyazonur.moneymanager.HarcamalarAdapter
 import com.feyyazonur.moneymanager.R
 import com.feyyazonur.moneymanager.databinding.FragmentHomeBinding
 import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
+import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
 
 class HomeFragment : Fragment() {
 
+    private lateinit var paraStatus: String
     private lateinit var mHarcamaViewModel: HarcamaViewModel
 
     private var savedIsim: String? = "isim giriniz"
@@ -43,7 +46,7 @@ class HomeFragment : Fragment() {
             adapter.setData(harcama)
         })
         mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, {para ->
-            binding.toplamHarcananTv.text = "Harcamanız\n${para?.toInt()?.toString()}"
+           binding.toplamHarcananTv.text = "Harcamanız\n${para?.toInt()?.toString()}"
         })
 
         //binding.harcamaListRecyclerView.adapter = adapter
@@ -54,29 +57,35 @@ class HomeFragment : Fragment() {
 
         // TL
         binding.tlButton.setOnClickListener{
-            adapter.changeParaBirimi("TL")
+            //adapter.changeParaBirimi("TL")
+            adapter.changeParaBirimi(getParaStatus("TL"))
         }
         // Dolar
         binding.dolarButton.setOnClickListener{
-            adapter.changeParaBirimi("Dolar")
+            //adapter.changeParaBirimi("Dolar")
+            adapter.changeParaBirimi(getParaStatus("Dolar"))
+
         }
         //Euro
         binding.euroButton.setOnClickListener {
-            adapter.changeParaBirimi("Euro")
+            //adapter.changeParaBirimi("Euro")
+            adapter.changeParaBirimi(getParaStatus("Euro"))
         }
         //Sterlin
         binding.sterlinButton.setOnClickListener {
-            adapter.changeParaBirimi("Sterlin")
+            //adapter.changeParaBirimi("Sterlin")
+            adapter.changeParaBirimi(getParaStatus("Sterlin"))
         }
 
         binding.whoIsButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToİsimFragment(binding.whoIsButton.text.toString())
+            val action = HomeFragmentDirections.actionHomeFragmentToKisiFragment(binding.whoIsButton.text.toString())
             findNavController().navigate(action)
         }
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_harcamaEkleFragment)
         }
 
+        Log.d("STATUSRETRO", mHarcamaViewModel.status.value.toString())
         return binding.root
     }
 
@@ -87,6 +96,12 @@ class HomeFragment : Fragment() {
         )
         savedIsim = sharedPref?.getString("isim", "isim giriniz")
         return !savedIsim.isNullOrEmpty()
+    }
+
+    fun getParaStatus(paraBirimi: String): String {
+        this.paraStatus = paraBirimi//ParaBirimiStatus.valueOf(paraBirimi)
+        Log.d("---GET PARA STATUS---", paraStatus)
+        return paraStatus
     }
 
 }

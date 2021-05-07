@@ -2,6 +2,7 @@ package com.feyyazonur.moneymanager.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,12 +45,15 @@ class HarcamaDetayFragment : Fragment() {
                     .setImageResource(R.drawable.ic_outline_home_24)
             }
         }
+        //Log.d("PARASSS", mHarcamaViewModel.paraStatus.value.toString())
+        //Log.d("PARA VSiz", mHarcamaViewModel.paraStatus.toString())
         when (args.currentHarcama.paraBirimi) {
             "TL" -> {
                 view.detay_tutar_tv.text = getString(
                     R.string.detay_para_birimi,
                     args.currentHarcama.harcananPara.toString(),
                     args.currentHarcama.paraBirimi
+                    //mHarcamaViewModel.paraStatus.toString()
                 )
             }"Dolar" -> {
                 view.detay_tutar_tv.text = getString(

@@ -38,8 +38,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_isimFragment"
-            app:destination="@id/isimFragment" />
+            android:id="@+id/action_homeFragment_to_kisiFragment"
+            app:destination="@id/kisiFragment" />
         <action
             android:id="@+id/action_homeFragment_to_harcamaEkleFragment"
             app:destination="@id/harcamaEkleFragment" />
@@ -49,14 +49,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/isimFragment"
-        android:name="com.feyyazonur.moneymanager.fragments.IsimFragment"
-        android:label="fragment_isim"
-        tools:layout="@layout/fragment_isim" >
+        android:id="@+id/kisiFragment"
+        android:name="com.feyyazonur.moneymanager.fragments.KisiFragment"
+        android:label="fragment_kisi"
+        tools:layout="@layout/fragment_kisi" >
         <action
-            android:id="@+id/action_isimFragment_to_homeFragment"
+            android:id="@+id/action_kisiFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/isimFragment"
+            app:popUpTo="@id/kisiFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="currentIsim"

@@ -28,6 +28,7 @@ interface HarcamaDatabaseDao {
     @Query("SELECT * FROM harcama_listesi_table ORDER BY harcamaId DESC LIMIT 1")
     suspend fun getLastHarcama(): Harcama?
 
+    // En son aldığım ürün en başta gözüksün diye DESC kullandım.
     @Query("SELECT * FROM harcama_listesi_table ORDER BY harcamaId DESC")
     fun getAllHarcama(): LiveData<List<Harcama>>
 }
