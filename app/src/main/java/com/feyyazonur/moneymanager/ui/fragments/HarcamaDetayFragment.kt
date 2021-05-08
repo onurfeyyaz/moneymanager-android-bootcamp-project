@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.fragments
+package com.feyyazonur.moneymanager.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle

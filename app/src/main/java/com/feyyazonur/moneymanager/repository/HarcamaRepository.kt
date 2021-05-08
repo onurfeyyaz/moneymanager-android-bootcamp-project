@@ -7,7 +7,7 @@ import com.feyyazonur.moneymanager.model.Harcama
 class HarcamaRepository(private val harcamaDatabaseDao: HarcamaDatabaseDao) {
 
     val getAllHarcama: LiveData<List<Harcama>> = harcamaDatabaseDao.getAllHarcama()
-    val toplamHarnanPara: LiveData<Float> = harcamaDatabaseDao.toplamHarcananPara()
+    val toplamHarcananPara: LiveData<Float> = harcamaDatabaseDao.toplamHarcananPara()
 
     suspend fun addHarcama(harcama: Harcama) {
         harcamaDatabaseDao.insert(harcama)

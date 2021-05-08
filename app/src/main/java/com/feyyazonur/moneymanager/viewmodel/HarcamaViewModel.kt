@@ -11,8 +11,6 @@ import com.feyyazonur.moneymanager.network.Api
 import com.feyyazonur.moneymanager.repository.HarcamaRepository
 import kotlinx.coroutines.launch
 
-enum class ApiStatus { LOADING, ERROR, DONE }
-
 class HarcamaViewModel(
     application: Application
 ) : AndroidViewModel(application) {
@@ -31,7 +29,7 @@ class HarcamaViewModel(
         val harcamaDao = HarcamaDatabase.getInstance(application).harcamaDatabaseDao()
         repository = HarcamaRepository(harcamaDao)
         getAllHarcama = repository.getAllHarcama
-        toplamHarcananPara = repository.toplamHarnanPara
+        toplamHarcananPara = repository.toplamHarcananPara
         getPhotos()
     }
 

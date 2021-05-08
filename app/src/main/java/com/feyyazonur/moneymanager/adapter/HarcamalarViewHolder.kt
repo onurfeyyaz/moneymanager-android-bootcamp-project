@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager
+package com.feyyazonur.moneymanager.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

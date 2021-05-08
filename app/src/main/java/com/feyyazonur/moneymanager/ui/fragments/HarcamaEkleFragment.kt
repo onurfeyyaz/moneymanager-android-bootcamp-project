@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.fragments
+package com.feyyazonur.moneymanager.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +21,7 @@ class HarcamaEkleFragment : Fragment() {
 
     private lateinit var mHarcamaViewModel: HarcamaViewModel
 
-    enum class HarcamaTipi { FATURA, KIRA, DIGER }
+    private val oran = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +33,11 @@ class HarcamaEkleFragment : Fragment() {
         mHarcamaViewModel = ViewModelProvider(this).get(HarcamaViewModel::class.java)
 
         binding.harcamaEkleButton.setOnClickListener {
+            Log.d("EKLEFRAGMENT---", mHarcamaViewModel.status.value.toString())
             insertDataToDatabase()
         }
 
-        //binding.lifecycleOwner = this
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -46,6 +47,7 @@ class HarcamaEkleFragment : Fragment() {
 
         lateinit var paraBirimi: String
         lateinit var harcamaTipi: String
+        var harcananPara: Float = 0.0F
 
         when (harcamaTipiRadioGroup){
             R.id.radio_button_1 -> harcamaTipi = binding.radioButton1.text.toString()
@@ -61,7 +63,26 @@ class HarcamaEkleFragment : Fragment() {
         }
 
         val harcamaIsmi = binding.harcamaDetayTextInputEditText.text.toString()
-        val harcananPara = binding.urunParasiTextInputEditText.text.toString().toFloat()
+
+        // TL biriminde DB'ye kaydet
+        when (paraBirimi) {
+            binding.radioButtonTl.text.toString() -> {
+                harcananPara = binding.urunParasiTextInputEditText.text.toString().toFloat()
+                paraBirimi = binding.radioButtonTl.text.toString()
+            }
+            binding.radioButtonUsd.text.toString() -> {
+                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran)
+                paraBirimi = binding.radioButtonTl.text.toString()
+            }
+            binding.radioButtonEur.text.toString() -> {
+                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran+5)
+                paraBirimi = binding.radioButtonTl.text.toString()
+            }
+            binding.radioButtonGbp.text.toString() -> {
+                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran+10)
+                paraBirimi = binding.radioButtonTl.text.toString()
+            }
+        }
 
         if (inputCheck(
                 harcamaIsmi,

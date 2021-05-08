@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.fragments
+package com.feyyazonur.moneymanager.ui.fragments
 
 import android.content.Context
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.onboarding
+package com.feyyazonur.moneymanager.ui.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.feyyazonur.moneymanager.databinding.FragmentViewPagerBinding
-import com.feyyazonur.moneymanager.onboarding.screens.FirstScreen
-import com.feyyazonur.moneymanager.onboarding.screens.SecondScreen
-import com.feyyazonur.moneymanager.onboarding.screens.ThirdScreen
+import com.feyyazonur.moneymanager.ui.onboarding.screens.FirstScreen
+import com.feyyazonur.moneymanager.ui.onboarding.screens.SecondScreen
+import com.feyyazonur.moneymanager.ui.onboarding.screens.ThirdScreen
 
 
 class ViewPagerFragment : Fragment() {

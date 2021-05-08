@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.fragments
+package com.feyyazonur.moneymanager.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.feyyazonur.moneymanager.HarcamalarAdapter
 import com.feyyazonur.moneymanager.R
+import com.feyyazonur.moneymanager.adapter.HarcamalarAdapter
 import com.feyyazonur.moneymanager.databinding.FragmentHomeBinding
 import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
-import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
 
 class HomeFragment : Fragment() {
 
@@ -42,11 +41,17 @@ class HomeFragment : Fragment() {
 
         // HarcamaViewModel
         mHarcamaViewModel = ViewModelProvider(this).get(HarcamaViewModel::class.java)
+
         mHarcamaViewModel.getAllHarcama.observe(viewLifecycleOwner, Observer { harcama ->
             adapter.setData(harcama)
         })
-        mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, {para ->
-           binding.toplamHarcananTv.text = "Harcamanız\n${para?.toInt()?.toString()}"
+
+        mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, { para ->
+            binding.toplamHarcananTv.text = getString(
+                R.string.sample_tutar,
+                para?.toInt()?.toString() ?: 0,
+                getParaStatus("₺"),
+            )//"Harcamanız\n${para?.toInt()?.toString()}"
         })
 
         //binding.harcamaListRecyclerView.adapter = adapter
@@ -56,29 +61,58 @@ class HomeFragment : Fragment() {
         }
 
         // TL
-        binding.tlButton.setOnClickListener{
+        binding.tlButton.setOnClickListener {
             //adapter.changeParaBirimi("TL")
+            mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, { para ->
+                binding.toplamHarcananTv.text = getString(
+                    R.string.sample_tutar,
+                    para?.toInt()?.toString(),
+                    getParaStatus("₺"),
+                )//"Harcamanız\n${para?.toInt()?.toString()}"
+            })
             adapter.changeParaBirimi(getParaStatus("TL"))
         }
         // Dolar
-        binding.dolarButton.setOnClickListener{
+        binding.dolarButton.setOnClickListener {
             //adapter.changeParaBirimi("Dolar")
+            mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, { para ->
+                binding.toplamHarcananTv.text = getString(
+                    R.string.sample_tutar,
+                    para?.toInt()?.toString(),
+                    getParaStatus("$"),
+                )//"Harcamanız\n${para?.toInt()?.toString()}"
+            })
             adapter.changeParaBirimi(getParaStatus("Dolar"))
 
         }
         //Euro
         binding.euroButton.setOnClickListener {
             //adapter.changeParaBirimi("Euro")
+            mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, { para ->
+                binding.toplamHarcananTv.text = getString(
+                    R.string.sample_tutar,
+                    para?.toInt()?.toString(),
+                    getParaStatus("€"),
+                )//"Harcamanız\n${para?.toInt()?.toString()}"
+            })
             adapter.changeParaBirimi(getParaStatus("Euro"))
         }
         //Sterlin
         binding.sterlinButton.setOnClickListener {
             //adapter.changeParaBirimi("Sterlin")
+            mHarcamaViewModel.toplamHarcananPara.observe(viewLifecycleOwner, { para ->
+                binding.toplamHarcananTv.text = getString(
+                    R.string.sample_tutar,
+                    para?.toInt()?.toString(),
+                    getParaStatus("£"),
+                )//"Harcamanız\n${para?.toInt()?.toString()}"
+            })
             adapter.changeParaBirimi(getParaStatus("Sterlin"))
         }
 
         binding.whoIsButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToKisiFragment(binding.whoIsButton.text.toString())
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToKisiFragment(binding.whoIsButton.text.toString())
             findNavController().navigate(action)
         }
         binding.floatingActionButton.setOnClickListener {
@@ -103,5 +137,4 @@ class HomeFragment : Fragment() {
         Log.d("---GET PARA STATUS---", paraStatus)
         return paraStatus
     }
-
 }

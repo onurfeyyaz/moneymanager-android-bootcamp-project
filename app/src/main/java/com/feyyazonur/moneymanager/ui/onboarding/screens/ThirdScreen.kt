@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.onboarding.screens
+package com.feyyazonur.moneymanager.ui.onboarding.screens
 
 import android.content.Context
 import android.os.Bundle

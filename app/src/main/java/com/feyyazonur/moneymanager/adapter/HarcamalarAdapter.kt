@@ -1,11 +1,12 @@
-package com.feyyazonur.moneymanager
+package com.feyyazonur.moneymanager.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.feyyazonur.moneymanager.fragments.HomeFragmentDirections
+import com.feyyazonur.moneymanager.R
+import com.feyyazonur.moneymanager.ui.fragments.HomeFragmentDirections
 import com.feyyazonur.moneymanager.model.Harcama
 import kotlinx.android.synthetic.main.harcamalar_item_view.view.*
 import java.util.*
@@ -153,6 +154,7 @@ class HarcamalarAdapter : RecyclerView.Adapter<HarcamalarViewHolder>() {
         this.paraBirimi = paraBirimi
         notifyDataSetChanged()
     }
+
 
     fun paraDegeriniCevir(tutar: Int, birim: Double): Int {
         return (tutar.toDouble() * birim).roundToInt()

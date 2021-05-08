@@ -1,16 +1,17 @@
-package com.feyyazonur.moneymanager.onboarding.screens
+package com.feyyazonur.moneymanager.ui.onboarding.screens
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.feyyazonur.moneymanager.R
 import com.feyyazonur.moneymanager.databinding.FragmentFirstScreenBinding
+import com.feyyazonur.moneymanager.databinding.FragmentSecondScreenBinding
 
-class FirstScreen : Fragment() {
-    private var _binding: FragmentFirstScreenBinding? = null
+class SecondScreen : Fragment() {
+    private var _binding: FragmentSecondScreenBinding? = null
 
     private val binding get() = _binding!!
 
@@ -19,12 +20,12 @@ class FirstScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentFirstScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentSecondScreenBinding.inflate(inflater, container, false)
 
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
-        binding.button1.setOnClickListener{
-            viewPager?.currentItem = 1
+        binding.button2.setOnClickListener{
+            viewPager?.currentItem = 2
         }
 
         return binding.root

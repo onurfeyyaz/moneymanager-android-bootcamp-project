@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.fragments
+package com.feyyazonur.moneymanager.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -28,19 +28,22 @@ class KisiFragment : Fragment() {
 
         var isim = args.currentIsim
 
-        if (isim.contains("Hanım")){
-            binding.radioGroup.check(binding.radioButton2.id)
-            // trim ekledim çünkü her kaydet'e bastığımda isim'in sonuna boşluk ekliyordu
-            // birden fazla kez, art arda kaydet butonuna basınca "feyyaz    bey" gibi bir string çıkıyordu.
-            isim = isim.replace("Hanım", "").trim()
+        when{
+            isim.contains("Hanım") -> {
+                binding.radioGroup.check(binding.radioButton2.id)
+                // trim ekledim çünkü her kaydet'e bastığımda isim'in sonuna boşluk ekliyordu
+                // birden fazla kez, art arda kaydet butonuna basınca "feyyaz    bey" gibi bir string çıkıyordu.
+                isim = isim.replace("Hanım", "").trim()
+            }
+            isim.contains("Bey") -> {
+                binding.radioGroup.check(binding.radioButton1.id)
+                isim = isim.replace("Bey", "").trim()
+            }
+            isim.contains("isim giriniz") -> {
+                isim = isim.replace("isim giriniz", "").trim()
+            }
+            else -> binding.radioGroup.check(binding.radioButton3.id)
         }
-
-        else if (args.currentIsim.contains("Bey")){
-            binding.radioGroup.check(binding.radioButton1.id)
-            isim = isim.replace("Bey", "").trim()
-        }
-        else
-            binding.radioGroup.check(binding.radioButton3.id)
 
         binding.isimGirEdittext.setText(isim)
 
@@ -56,7 +59,7 @@ class KisiFragment : Fragment() {
         return binding.root
     }
 
-    private fun ismiKaydet(){
+    private fun ismiKaydet() {
         val justIsim = binding.isimGirEdittext.text.toString()
         val cinsiyetli = when (binding.radioGroup.checkedRadioButtonId) {
             R.id.radio_button_1 ->

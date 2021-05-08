@@ -1,4 +1,4 @@
-package com.feyyazonur.moneymanager.onboarding
+package com.feyyazonur.moneymanager.ui.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -30,7 +30,7 @@
     <string name="kira">Kira</string>
     <string name="diger">Diğer</string>
     <string name="sil">Sil</string>
-    <string name="sample_tutar">Harcamanız: %s %s</string>
+    <string name="sample_tutar">Harcamanız\n%s %s</string>
     <string name="harcama_tutar_tipli">%s</string>
     <string name="detay_para_birimi">%s %s</string>
 
