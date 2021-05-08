@@ -1,6 +1,7 @@
 package com.feyyazonur.moneymanager.ui.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,17 @@ import androidx.navigation.fragment.navArgs
 import com.feyyazonur.moneymanager.R
 import com.feyyazonur.moneymanager.viewmodel.HarcamaViewModel
 import kotlinx.android.synthetic.main.fragment_harcama_detay.view.*
+import kotlin.math.roundToInt
 
 class HarcamaDetayFragment : Fragment() {
 
     private val args by navArgs<HarcamaDetayFragmentArgs>()
 
     private lateinit var mHarcamaViewModel: HarcamaViewModel
+
+    private var dolarDegeri: Float = 0.0f
+    private var euroDegeri: Float = 0.0f
+    private var sterlinDegeri: Float = 0.0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +50,7 @@ class HarcamaDetayFragment : Fragment() {
             }
         }
 
+        kurGetir()
         detayGoster(view)
 
         view.detay_harcama_ismi_tv.setText(args.currentHarcama.harcamaIsmi)
@@ -76,18 +83,50 @@ class HarcamaDetayFragment : Fragment() {
         }
         builder.setTitle("Silme İşlemi")
         builder.setMessage(
-            "${
-                args.currentHarcama.harcananPara.toInt()
-            } tutarındaki ${args.currentHarcama.harcamaIsmi} harcamasını silmek istiyor musunuz?"
+            "${args.currentHarcama.harcamaIsmi} harcamasını silmek istiyor musunuz?"
         )
         builder.create().show()
     }
 
     private fun detayGoster(view: View) {
-        view.detay_tutar_tv.text = getString(
-            R.string.detay_para_birimi,
-            args.currentHarcama.harcananPara.toString(),
-            args.currentHarcama.paraBirimi
+        when (args.currentHarcama.paraBirimi) {
+            "TL" -> {
+                view.detay_tutar_tv.text = getString(
+                    R.string.detay_para_birimi,
+                    (args.currentHarcama.harcananPara * 1.0).roundToInt().toString(),
+                    "₺"
+                )
+            }
+            "Dolar" -> {
+                view.detay_tutar_tv.text = getString(
+                    R.string.detay_para_birimi,
+                    (args.currentHarcama.harcananPara * dolarDegeri).roundToInt().toString(),
+                    "$"
+                )
+            }
+            "Euro" -> {
+                view.detay_tutar_tv.text = getString(
+                    R.string.detay_para_birimi,
+                    (args.currentHarcama.harcananPara * euroDegeri).roundToInt().toString(),
+                    "€"
+                )
+            }
+            "Sterlin" -> {
+                view.detay_tutar_tv.text = getString(
+                    R.string.detay_para_birimi,
+                    (args.currentHarcama.harcananPara * sterlinDegeri).roundToInt().toString(),
+                    "£"
+                )
+            }
+        }
+    }
+
+    private fun kurGetir() {
+        val sharedPref = activity?.getSharedPreferences(
+            "kurKaydet", Context.MODE_PRIVATE
         )
+        dolarDegeri = sharedPref!!.getFloat("kurGuncelleUSD", 0.12F)
+        euroDegeri = sharedPref.getFloat("kurGuncelleEUR", 0.09F)
+        sterlinDegeri = sharedPref.getFloat("kurGuncelleGBP", 0.08F)
     }
 }

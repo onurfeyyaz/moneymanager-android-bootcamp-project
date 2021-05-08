@@ -96,8 +96,8 @@ class HarcamaEkleFragment : Fragment() {
             if (inputCheck(
                     harcamaIsmi,
                     harcananPara.toString(),
-                    harcamaTipiRadioGroup.toString(),
-                    paraBirimiRadioGroup.toString()
+                    harcamaTipiRadioGroup,
+                    paraBirimiRadioGroup
                 )
             ) {
                 // Harcama Objesi Oluştur
@@ -116,14 +116,14 @@ class HarcamaEkleFragment : Fragment() {
     private fun inputCheck(
         harcamaIsmi: String,
         harcananPara: String,
-        harcamaTipi: String,
-        paraBirimi: String
+        harcamaTipi: Int,
+        paraBirimi: Int
     ): Boolean {
         return (
                 harcamaIsmi != ""
                         && harcananPara != ""
-                        && harcamaTipi != ""
-                        && paraBirimi != ""
+                        && harcamaTipi != -1
+                        && paraBirimi != -1
                 )
     }
 

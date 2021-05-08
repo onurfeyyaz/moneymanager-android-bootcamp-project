@@ -61,7 +61,7 @@ class KisiFragment : Fragment() {
 
     private fun ismiKaydet() {
         val justIsim = binding.isimGirEdittext.text.toString()
-        val cinsiyetli = when (binding.radioGroup.checkedRadioButtonId) {
+        val saygiEki = when (binding.radioGroup.checkedRadioButtonId) {
             R.id.radio_button_1 ->
                 "$justIsim Bey"
             R.id.radio_button_2 ->
@@ -74,7 +74,7 @@ class KisiFragment : Fragment() {
         )
         val editor = sharedPref!!.edit()
         editor.apply {
-            putString("isim", cinsiyetli)
+            putString("isim", saygiEki)
         }.apply()
     }
 
