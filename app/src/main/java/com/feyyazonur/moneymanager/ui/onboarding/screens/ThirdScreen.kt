@@ -2,13 +2,12 @@ package com.feyyazonur.moneymanager.ui.onboarding.screens
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.feyyazonur.moneymanager.R
-import com.feyyazonur.moneymanager.databinding.FragmentSecondScreenBinding
 import com.feyyazonur.moneymanager.databinding.FragmentThirdScreenBinding
 
 class ThirdScreen : Fragment() {
@@ -23,7 +22,7 @@ class ThirdScreen : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentThirdScreenBinding.inflate(inflater, container, false)
 
-        binding.bitir3.setOnClickListener{
+        binding.bitir3.setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment)
             onBoardingFinished()
         }
@@ -31,7 +30,7 @@ class ThirdScreen : Fragment() {
         return binding.root
     }
 
-    private fun onBoardingFinished(){
+    private fun onBoardingFinished() {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("Finished", true)

@@ -1,5 +1,6 @@
 package com.feyyazonur.moneymanager.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +22,9 @@ class HarcamaEkleFragment : Fragment() {
 
     private lateinit var mHarcamaViewModel: HarcamaViewModel
 
-    private val oran = 10
+    var dolarDegeri: Float = 0.0f
+    var euroDegeri: Float = 0.0f
+    var sterlinDegeri: Float = 0.0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +48,11 @@ class HarcamaEkleFragment : Fragment() {
         val harcamaTipiRadioGroup = binding.radioGroup.checkedRadioButtonId
         val paraBirimiRadioGroup = binding.radioGroup2.checkedRadioButtonId
 
-        lateinit var paraBirimi: String
-        lateinit var harcamaTipi: String
-        var harcananPara: Float = 0.0F
+        var paraBirimi = ""
+        var harcamaTipi = ""
+        var harcananPara = 0.0F
 
-        when (harcamaTipiRadioGroup){
+        when (harcamaTipiRadioGroup) {
             R.id.radio_button_1 -> harcamaTipi = binding.radioButton1.text.toString()
             R.id.radio_button_2 -> harcamaTipi = binding.radioButton2.text.toString()
             R.id.radio_button_3 -> harcamaTipi = binding.radioButton3.text.toString()
@@ -64,6 +67,8 @@ class HarcamaEkleFragment : Fragment() {
 
         val harcamaIsmi = binding.harcamaDetayTextInputEditText.text.toString()
 
+        kurGetir()
+        Log.d("H-EKLE DOLAR DEĞER", dolarDegeri.toString())
         // TL biriminde DB'ye kaydet
         when (paraBirimi) {
             binding.radioButtonTl.text.toString() -> {
@@ -71,52 +76,65 @@ class HarcamaEkleFragment : Fragment() {
                 paraBirimi = binding.radioButtonTl.text.toString()
             }
             binding.radioButtonUsd.text.toString() -> {
-                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran)
+                harcananPara =
+                    (binding.urunParasiTextInputEditText.text.toString().toFloat() / dolarDegeri)
                 paraBirimi = binding.radioButtonTl.text.toString()
             }
             binding.radioButtonEur.text.toString() -> {
-                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran+5)
+                harcananPara =
+                    (binding.urunParasiTextInputEditText.text.toString().toFloat() / euroDegeri)
                 paraBirimi = binding.radioButtonTl.text.toString()
             }
             binding.radioButtonGbp.text.toString() -> {
-                harcananPara = (binding.urunParasiTextInputEditText.text.toString().toFloat() / oran+10)
+                harcananPara =
+                    (binding.urunParasiTextInputEditText.text.toString().toFloat() / sterlinDegeri)
                 paraBirimi = binding.radioButtonTl.text.toString()
             }
         }
 
-        if (inputCheck(
-                harcamaIsmi,
-                harcananPara.toString(),
-                harcamaTipiRadioGroup.toString(),
-                paraBirimiRadioGroup.toString()
-            )
-        ) {
-            // Harcama Objesi Oluştur
-            val harcama =
-                Harcama(0, harcamaIsmi, harcananPara, harcamaTipi, paraBirimi)
-            // Database'e data ekle
-            mHarcamaViewModel.harcamaEkle(harcama)
-            Toast.makeText(requireContext(), "Kaydedildi!", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_harcamaEkleFragment_to_homeFragment)
-        }
-        else{
+        try {
+            if (inputCheck(
+                    harcamaIsmi,
+                    harcananPara.toString(),
+                    harcamaTipiRadioGroup.toString(),
+                    paraBirimiRadioGroup.toString()
+                )
+            ) {
+                // Harcama Objesi Oluştur
+                val harcama =
+                    Harcama(0, harcamaIsmi, harcananPara, harcamaTipi, paraBirimi)
+                // Database'e data ekle
+                mHarcamaViewModel.harcamaEkle(harcama)
+                Toast.makeText(requireContext(), "Kaydedildi!", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_harcamaEkleFragment_to_homeFragment)
+            }
+        } catch (e: Exception) {
             Toast.makeText(requireContext(), "Tüm alanları doldurun.", Toast.LENGTH_LONG).show()
         }
     }
 
-
     private fun inputCheck(
-        harcamaIsmi: String?,
-        harcananPara: String?,
-        harcamaTipi: String?,
-        paraBirimi: String?
+        harcamaIsmi: String,
+        harcananPara: String,
+        harcamaTipi: String,
+        paraBirimi: String
     ): Boolean {
-        return !(
-                harcamaIsmi.isNullOrBlank()
-                        && harcananPara.isNullOrBlank()
-                        && harcamaTipi.isNullOrBlank()
-                        && paraBirimi.isNullOrBlank()
+        return (
+                harcamaIsmi != ""
+                        && harcananPara != ""
+                        && harcamaTipi != ""
+                        && paraBirimi != ""
                 )
+    }
+
+    private fun kurGetir() {
+        // SharedPreferences
+        val sharedPref = activity?.getSharedPreferences(
+            "kurKaydet", Context.MODE_PRIVATE
+        )
+        dolarDegeri = sharedPref!!.getFloat("kurGuncelleUSD", 0.45F)
+        euroDegeri = sharedPref.getFloat("kurGuncelleEUR", 0.144F)
+        sterlinDegeri = sharedPref.getFloat("kurGuncelleGBP", 0.1442F)
     }
 
     override fun onDestroyView() {

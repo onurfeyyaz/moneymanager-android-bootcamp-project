@@ -1,13 +1,12 @@
 package com.feyyazonur.moneymanager.ui.onboarding.screens
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.feyyazonur.moneymanager.R
-import com.feyyazonur.moneymanager.databinding.FragmentFirstScreenBinding
 import com.feyyazonur.moneymanager.databinding.FragmentSecondScreenBinding
 
 class SecondScreen : Fragment() {

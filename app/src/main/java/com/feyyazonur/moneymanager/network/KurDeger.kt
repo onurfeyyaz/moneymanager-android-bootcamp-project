@@ -1,7 +1,9 @@
 package com.feyyazonur.moneymanager.network
 
-import com.squareup.moshi.Json
+data class ApiResponse(val conversion_rates: ParaBirimleri)
 
-data class KurDeger(
-    val id: String, @Json(name = "img_src") val imgSrcUrl: String
+data class ParaBirimleri(
+    val USD: Float,
+    val EUR: Float,
+    val GBP: Float
 )

@@ -4,10 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.feyyazonur.moneymanager.R
 
@@ -27,8 +27,8 @@ class SplashFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    // uygulamanın daha önce açıldı mı açılmadı mı kontrol eden fonksiyon
-    private fun onBoardingFinished(): Boolean{
+    // uygulamanın daha önce açılıp açılmadığını kontrol eden fonksiyon
+    private fun onBoardingFinished(): Boolean {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("Finished", false)
     }

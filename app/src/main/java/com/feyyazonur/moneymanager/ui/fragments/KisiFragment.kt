@@ -28,7 +28,7 @@ class KisiFragment : Fragment() {
 
         var isim = args.currentIsim
 
-        when{
+        when {
             isim.contains("Hanım") -> {
                 binding.radioGroup.check(binding.radioButton2.id)
                 // trim ekledim çünkü her kaydet'e bastığımda isim'in sonuna boşluk ekliyordu

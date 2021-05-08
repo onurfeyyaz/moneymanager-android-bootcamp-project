@@ -2,7 +2,6 @@ package com.feyyazonur.moneymanager.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ class HarcamaDetayFragment : Fragment() {
     private val args by navArgs<HarcamaDetayFragmentArgs>()
 
     private lateinit var mHarcamaViewModel: HarcamaViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,37 +43,9 @@ class HarcamaDetayFragment : Fragment() {
                     .setImageResource(R.drawable.ic_outline_home_24)
             }
         }
-        //Log.d("PARASSS", mHarcamaViewModel.paraStatus.value.toString())
-        //Log.d("PARA VSiz", mHarcamaViewModel.paraStatus.toString())
-        when (args.currentHarcama.paraBirimi) {
-            "TL" -> {
-                view.detay_tutar_tv.text = getString(
-                    R.string.detay_para_birimi,
-                    args.currentHarcama.harcananPara.toString(),
-                    args.currentHarcama.paraBirimi
-                    //mHarcamaViewModel.paraStatus.toString()
-                )
-            }"Dolar" -> {
-                view.detay_tutar_tv.text = getString(
-                    R.string.detay_para_birimi,
-                    args.currentHarcama.harcananPara.toString(),
-                    args.currentHarcama.paraBirimi
-                )
-            }"Euro" -> {
-                view.detay_tutar_tv.text = getString(
-                    R.string.detay_para_birimi,
-                    args.currentHarcama.harcananPara.toString(),
-                    args.currentHarcama.paraBirimi
-                )
-            }
-            "Sterlin" -> {
-                view.detay_tutar_tv.text = getString(
-                    R.string.detay_para_birimi,
-                    args.currentHarcama.harcananPara.toString(),
-                    args.currentHarcama.paraBirimi
-                )
-            }
-        }
+
+        detayGoster(view)
+
         view.detay_harcama_ismi_tv.setText(args.currentHarcama.harcamaIsmi)
 
         view.detay_sil_btn.setOnClickListener {
@@ -86,7 +56,6 @@ class HarcamaDetayFragment : Fragment() {
     }
 
     private fun deleteItem() {
-
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Evet") { _, _ ->
             mHarcamaViewModel.deleteHarcama(args.currentHarcama)
@@ -108,10 +77,17 @@ class HarcamaDetayFragment : Fragment() {
         builder.setTitle("Silme İşlemi")
         builder.setMessage(
             "${
-                args.currentHarcama.harcananPara.toInt().toString()
+                args.currentHarcama.harcananPara.toInt()
             } tutarındaki ${args.currentHarcama.harcamaIsmi} harcamasını silmek istiyor musunuz?"
         )
         builder.create().show()
     }
 
+    private fun detayGoster(view: View) {
+        view.detay_tutar_tv.text = getString(
+            R.string.detay_para_birimi,
+            args.currentHarcama.harcananPara.toString(),
+            args.currentHarcama.paraBirimi
+        )
+    }
 }

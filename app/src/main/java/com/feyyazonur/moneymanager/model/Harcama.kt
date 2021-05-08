@@ -23,4 +23,4 @@ data class Harcama(
 
     @ColumnInfo(name = "para_birimi")
     var paraBirimi: String
-): Parcelable
+) : Parcelable
