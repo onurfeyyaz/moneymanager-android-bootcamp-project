@@ -28,7 +28,7 @@ class HarcamaDatabaseTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        harcamaDao = db.harcamaDatabaseDao
+        harcamaDao = db.harcamaDatabaseDao()
     }
 
     @After
@@ -40,7 +40,7 @@ class HarcamaDatabaseTest {
     @Test
     @Throws(Exception::class)
     suspend fun insertAndGetParaBirimi() {
-        val paraBirimi = Harcama(1,"ayakkabı", "trendyoldan aldım", "ihtiyaç", "TL")
+        val paraBirimi = Harcama(1,"ayakkabı", 230.0F, "ihtiyaç", "TL")
         harcamaDao.insert(paraBirimi)
         val lastHarcama = harcamaDao.getLastHarcama()
         assertEquals(lastHarcama?.harcamaIsmi, "ayakkabı")

@@ -2,7 +2,6 @@
 
 Harcama Takip Uygulaması
 ----
-
 Kotlin ile geliştirilen bu projede:
 - MVVM
 - Navigation Component
@@ -22,6 +21,13 @@ Kotlin ile geliştirilen bu projede:
 - Harcamalarınızın detayını görebilirsiniz.
 - İstemediğiniz harcamalarınızı silebilirsiniz.
 
+Kurulum:
+----
+- Kaynak Koddan
+    - Kaynak kodları indirip Android Studio üzerinden APK build alabilirsiniz.
+- APK
+    - [APK] tıklayarak .apk dosyasına ulaşabilirsiniz.
+
 Eğitim Hakkında:
 ----
 - [GDG Turkey Android Bootcamp Eğitim Serisi - Youtube](https://www.youtube.com/playlist?list=PLZj2Q42tw-6915lSwwLBI8zXJHemcFYnj)
@@ -33,6 +39,15 @@ Ekran Görüntüleri:
 <img src="https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/Screenshots/dolarekran.png" width="480" height="850"/>
 
 [Daha fazla ekran görüntüsü için](https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/Screenshots/)
+
+Not:
+----
+- Öz eleştiri:
+    - String-Int-Float parse işlemlerini daha dikkatli yapabilirdim.
+    - ViewModel - LiveData üzerine çalışmam lazım.
+    - Değişken ve fonksiyon isimleri Türkçe-İngilizce, daha anlaşılabilir isimler verebilirdim.
+    - Daha düzgün kod yazabilirdim! (yaza yaza gelişecek artık)
+- Sizlerin de geri bildirimlerinizi bekliyorum.
 
 OnBoarding Screen Icon Atıfları Sırasıyla:
 ----
