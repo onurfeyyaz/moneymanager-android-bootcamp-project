@@ -31,6 +31,7 @@ Ekran Görüntüleri:
 ----
 <img src="https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/Screenshots/tlekran.png" width="480" height="850"/>
 <img src="https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/Screenshots/dolarekran.png" width="480" height="850"/>
+
 [Daha fazla ekran görüntüsü için](https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/Screenshots/)
 
 OnBoarding Screen Icon Atıfları Sırasıyla:
