@@ -23,10 +23,10 @@ Kotlin ile geliştirilen bu projede:
 
 Kurulum:
 ----
-- Kaynak Koddan
+1. Kaynak Kod
     - Kaynak kodları indirip Android Studio üzerinden APK build alabilirsiniz.
-- APK
-    - [APK] tıklayarak .apk dosyasına ulaşabilirsiniz.
+2. APK
+    - [APK](https://github.com/onurfeyyaz/moneymanager-android-bootcamp-project/blob/main/app/release/app-release.apk) tıklayarak .apk dosyasına ulaşabilirsiniz.
 
 Eğitim Hakkında:
 ----
